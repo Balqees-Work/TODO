@@ -6,7 +6,6 @@ enum TodoStatus { initial, loading, success, error }
 @immutable
 class TodoState extends Equatable {
   final List<ModelTodo> todo; // service
-  // final List<ModelTodo> ads; // ads
   final TodoStatus status;
   final String? error;
 

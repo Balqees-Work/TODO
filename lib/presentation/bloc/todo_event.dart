@@ -8,7 +8,7 @@ sealed class TodoEvent extends Equatable {
 }
 
 /// Event triggered when the app starts to fetch initial data
-class LoadTodosStarted extends TodoEvent {}
+class LoadTodoStarted extends TodoEvent {}
 
 class AddTodoEvent extends TodoEvent {
   final String title;
@@ -18,6 +18,14 @@ class AddTodoEvent extends TodoEvent {
 
   @override
   List<Object?> get props => [title, description];
+}
+
+class UpdateTodoEvent extends TodoEvent {
+  final ModelTodo todo;
+  const UpdateTodoEvent(this.todo);
+
+  @override
+  List<Object?> get props => [todo];
 }
 
 class RemoveTodoEvent extends TodoEvent {
