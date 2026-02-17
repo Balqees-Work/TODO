@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
+import 'package:todo_bal/domain/enitiy/to_do_entity.dart';
 
 @immutable
 class ModelTodo extends Equatable {
@@ -9,6 +10,7 @@ class ModelTodo extends Equatable {
   final String description;
   final bool isDone;
   final DateTime createAt;
+  final String img;
 
   const ModelTodo({
     required this.id,
@@ -16,6 +18,7 @@ class ModelTodo extends Equatable {
     required this.description,
     this.isDone = false,
     required this.createAt,
+    required this.img,
   });
   // ob1 = ModelTodo(id: 1, title:"test","description":"test description",isDone:false)
   // obj2 =  ob1.copyWith(title:"mohamed"); // id: 1, title:"Mohamed","description":"test description",isDone:false
@@ -25,6 +28,7 @@ class ModelTodo extends Equatable {
     String? description,
     bool? isDone,
     DateTime? createAt,
+    String? img,
   }) {
     return ModelTodo(
       id: id ?? this.id,
@@ -32,11 +36,12 @@ class ModelTodo extends Equatable {
       description: description ?? this.description,
       isDone: isDone ?? this.isDone,
       createAt: createAt ?? this.createAt,
+      img: img ?? this.img,
     );
   }
 
   @override
-  List<Object?> get props => [id, title, description, isDone, createAt];
+  List<Object?> get props => [id, title, description, isDone, createAt, img];
 
   @override
   bool get stringify => true;
@@ -58,6 +63,24 @@ class ModelTodo extends Equatable {
   //       description.hashCode ^
   //       isDone.hashCode;
   // }
+}
+
+extension ToDoToEntity on ModelTodo {
+  ToDoListEntity toEntity() {
+    return ToDoListEntity(
+      id: id,
+      title: title,
+      description: description,
+      isDone: isDone,
+      createAt: createAt, img: img,
+    );
+  }
+}
+
+extension ToDoToListToEntity on List<ModelTodo> {
+  List<ToDoListEntity> toEntity() {
+    return map((e) => e.toEntity()).toList();
+  }
 }
 
 // ModelTodo(id: 1, title:"test","description":"test description",isDone:false)

@@ -5,7 +5,7 @@ enum TodoStatus { initial, loading, success, error }
 
 @immutable
 class TodoState extends Equatable {
-  final List<ModelTodo> todo; // service
+  final List<ToDoListEntity> todo; // service
   final TodoStatus status;
   final String? error;
 
@@ -16,7 +16,7 @@ class TodoState extends Equatable {
   });
 
   TodoState copyWith({
-    List<ModelTodo>? todo,
+    List<ToDoListEntity>? todo,
     TodoStatus? status,
     String? error,
   }) {

@@ -5,7 +5,10 @@ import 'package:todo_bal/config/routes.dart';
 import 'package:todo_bal/presentation/bloc/todo_bloc.dart';
 import 'package:todo_bal/presentation/page/page_todo.dart';
 
-void main() {
+import 'config/config_injection.dart';
+
+Future<void> main() async {
+  await configureDependencies();
   runApp(StartApp());
 }
 

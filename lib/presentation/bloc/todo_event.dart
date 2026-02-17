@@ -21,7 +21,7 @@ class AddTodoEvent extends TodoEvent {
 }
 
 class UpdateTodoEvent extends TodoEvent {
-  final ModelTodo todo;
+  final ToDoListEntity todo;
   const UpdateTodoEvent(this.todo);
 
   @override
@@ -29,7 +29,7 @@ class UpdateTodoEvent extends TodoEvent {
 }
 
 class RemoveTodoEvent extends TodoEvent {
-  final ModelTodo todo;
+  final ToDoListEntity todo;
   const RemoveTodoEvent(this.todo);
 
   @override

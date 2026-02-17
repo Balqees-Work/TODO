@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:todo_bal/presentation/bloc/todo_bloc.dart';
 
 import 'package:todo_bal/presentation/widgets/w_layout_todo.dart';
@@ -11,6 +12,7 @@ class PageTodo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('My Tasks')),
+      backgroundColor: Color(0xFFDCCCB4),
       body: BlocBuilder<TodoBloc, TodoState>(
         builder: (context, state) {
           if (state.status == TodoStatus.loading) {
@@ -19,7 +21,6 @@ class PageTodo extends StatelessWidget {
           if (state.status == TodoStatus.error) {
             return Center(child: Text(state.error ?? ''));
           }
-
           return WidgetLayoutTodo(todos: state.todo);
         },
       ),
