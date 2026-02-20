@@ -11,6 +11,7 @@ class ModelTodo extends Equatable {
   final bool isDone;
   final DateTime createAt;
   final String img;
+  final String details;
 
   const ModelTodo({
     required this.id,
@@ -19,6 +20,7 @@ class ModelTodo extends Equatable {
     this.isDone = false,
     required this.createAt,
     required this.img,
+    required this.details,
   });
   // ob1 = ModelTodo(id: 1, title:"test","description":"test description",isDone:false)
   // obj2 =  ob1.copyWith(title:"mohamed"); // id: 1, title:"Mohamed","description":"test description",isDone:false
@@ -29,6 +31,7 @@ class ModelTodo extends Equatable {
     bool? isDone,
     DateTime? createAt,
     String? img,
+    String? details,
   }) {
     return ModelTodo(
       id: id ?? this.id,
@@ -37,11 +40,20 @@ class ModelTodo extends Equatable {
       isDone: isDone ?? this.isDone,
       createAt: createAt ?? this.createAt,
       img: img ?? this.img,
+      details: details ?? this.details,
     );
   }
 
   @override
-  List<Object?> get props => [id, title, description, isDone, createAt, img];
+  List<Object?> get props => [
+    id,
+    title,
+    description,
+    isDone,
+    createAt,
+    img,
+    details,
+  ];
 
   @override
   bool get stringify => true;
@@ -72,7 +84,9 @@ extension ToDoToEntity on ModelTodo {
       title: title,
       description: description,
       isDone: isDone,
-      createAt: createAt, img: img,
+      createAt: createAt,
+      img: img,
+      details: details,
     );
   }
 }

@@ -5,6 +5,7 @@ class ToDoListEntity {
   final bool isDone;
   final DateTime createAt;
   final String img;
+  final String details;
 
   ToDoListEntity({
     required this.title,
@@ -13,5 +14,6 @@ class ToDoListEntity {
     required this.id,
     required this.isDone,
     required this.createAt,
+    required this.details,
   });
 }
