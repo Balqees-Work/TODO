@@ -62,6 +62,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
         createAt: DateTime.now(),
         img: "assets/images/bear.png",
         isDone: true,
+        details: event.details,
       );
 
       final updatedList = List<ToDoListEntity>.from(state.todo)..add(newTodo);
