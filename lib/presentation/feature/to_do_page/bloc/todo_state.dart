@@ -1,34 +1,36 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'todo_bloc.dart';
 
-enum TodoStatus { initial, loading, success, error }
+enum TodoProcessStatus { add, delete, update }
 
 @immutable
-class TodoState extends Equatable {
+class TodoState extends BlocBaseStatus {
   final List<ToDoListEntity> todo; // service
-  final TodoStatus status;
-  final String? error;
+  final TodoProcessStatus? processStatus;
 
   const TodoState({
     this.todo = const [],
-    this.status = TodoStatus.initial,
-    this.error,
+    this.processStatus,
+    super.status,
+    super.errorMessage,
   });
 
   TodoState copyWith({
     List<ToDoListEntity>? todo,
-    TodoStatus? status,
-    String? error,
+    AppStatus? status,
+    TodoProcessStatus? processStatus,
+    String? errorMessage,
   }) {
     return TodoState(
       todo: todo ?? this.todo,
       status: status ?? this.status,
-      error: error ?? this.error,
+      processStatus: processStatus ?? this.processStatus,
+      errorMessage: errorMessage ?? this.errorMessage,
     );
   }
 
   @override
-  List<Object?> get props => [todo, status, error];
+  List<Object?> get props => [...super.props, todo, processStatus];
 
   @override
   bool get stringify => true;

@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:todo_bal/config/config_injection.dart';
+import 'package:todo_bal/core/bloc/bloc_base_status.dart';
 import 'package:todo_bal/data/exception/exception_todo.dart';
 import 'package:todo_bal/data/model/m_todo.dart';
 import 'package:todo_bal/domain/enitiy/to_do_entity.dart';
@@ -25,14 +26,14 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
     LoadTodoStarted event,
     Emitter<TodoState> emit,
   ) async {
-    emit(state.copyWith(status: TodoStatus.loading));
+    emit(state.copyWith(status: AppStatus.loading));
     try {
       final List<ToDoListEntity> todo = await toDoListUseCase.execute();
       await Future.delayed(const Duration(seconds: 2)); // simulate api
 
       emit(
         state.copyWith(
-          status: TodoStatus.success,
+          status: AppStatus.success,
           todo: todo,
           // ads: [],
         ),
@@ -43,9 +44,11 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
       }
     } on TodoException catch (error) {
       // rethrow;
-      emit(state.copyWith(status: TodoStatus.error, error: error.toString()));
+      emit(
+        state.copyWith(status: AppStatus.error, errorMessage: error.toString()),
+      );
     } catch (e) {
-      emit(state.copyWith(status: TodoStatus.error, error: e.toString()));
+      emit(state.copyWith(status: AppStatus.error, errorMessage: e.toString()));
     }
   }
 
@@ -53,7 +56,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
     AddTodoEvent event,
     Emitter<TodoState> emit,
   ) async {
-    emit(state.copyWith(status: TodoStatus.loading));
+    emit(state.copyWith(status: AppStatus.loading));
     try {
       final newTodo = ToDoListEntity(
         id: Uuid().v4().hashCode,
@@ -66,10 +69,13 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
       );
 
       final updatedList = List<ToDoListEntity>.from(state.todo)..add(newTodo);
-      emit(state.copyWith(status: TodoStatus.success, todo: updatedList));
+      emit(state.copyWith(status: AppStatus.success, todo: updatedList));
     } catch (e) {
       emit(
-        state.copyWith(status: TodoStatus.error, error: "Failed to add task"),
+        state.copyWith(
+          status: AppStatus.error,
+          errorMessage: "Failed to add task",
+        ),
       );
     }
   }
@@ -81,12 +87,12 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
     try {
       // Because ModelTodo uses Equatable, .remove() works perfectly here
       final newList = List<ToDoListEntity>.from(state.todo)..remove(event.todo);
-      emit(state.copyWith(status: TodoStatus.success, todo: newList));
+      emit(state.copyWith(status: AppStatus.success, todo: newList));
     } catch (e) {
       emit(
         state.copyWith(
-          status: TodoStatus.error,
-          error: "Could not delete task",
+          status: AppStatus.error,
+          errorMessage: "Could not delete task",
         ),
       );
     }
@@ -102,9 +108,11 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
         return todo.id == event.todo.id ? event.todo : todo;
       }).toList();
 
-      emit(state.copyWith(status: TodoStatus.success, todo: updatedList));
+      emit(state.copyWith(status: AppStatus.success, todo: updatedList));
     } catch (e) {
-      emit(state.copyWith(status: TodoStatus.error, error: "Update failed"));
+      emit(
+        state.copyWith(status: AppStatus.error, errorMessage: "Update failed"),
+      );
     }
   }
 }

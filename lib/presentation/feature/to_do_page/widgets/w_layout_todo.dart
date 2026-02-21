@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:todo_bal/data/model/m_todo.dart';
+
 import 'package:todo_bal/domain/enitiy/to_do_entity.dart';
 import 'package:todo_bal/presentation/feature/to_do_page/widgets/w_card.dart';
 
