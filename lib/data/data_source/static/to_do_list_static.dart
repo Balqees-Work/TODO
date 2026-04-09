@@ -12,6 +12,8 @@ class ToDoListStatic {
         img: "assets/images/bear.png",
         id: Uuid().v4().hashCode,
         createAt: DateTime.now(),
+        details:
+            "Build the UI, connect it with Bloc, handle states, and test navigation to the details page.",
       ),
       ModelTodo(
         title: "Prepare meeting notes",
@@ -19,6 +21,8 @@ class ToDoListStatic {
         img: "assets/images/bear.png",
         id: Uuid().v4().hashCode,
         createAt: DateTime.now(),
+        details:
+            "Write key discussion points and organize the project roadmap document.",
       ),
       ModelTodo(
         title: "Go for a walk",
@@ -26,6 +30,8 @@ class ToDoListStatic {
         img: "assets/images/bear.png",
         id: Uuid().v4().hashCode,
         createAt: DateTime.now(),
+        details:
+            "Walk at least 30 minutes in the park, listen to a podcast, and stretch after returning.",
       ),
       ModelTodo(
         title: "Cook dinner",
@@ -33,6 +39,8 @@ class ToDoListStatic {
         img: "assets/images/bear.png",
         id: Uuid().v4().hashCode,
         createAt: DateTime.now(),
+        details:
+            "Cook grilled chicken with vegetables, avoid fast food and prepare lunch for tomorrow.",
       ),
       ModelTodo(
         title: "Water the plants",
@@ -40,6 +48,8 @@ class ToDoListStatic {
         img: "assets/images/bear.png",
         id: Uuid().v4().hashCode,
         createAt: DateTime.now(),
+        details:
+            "Water indoor plants carefully, check soil moisture, and remove dry leaves.",
       ),
       ModelTodo(
         title: "Read before bed",
@@ -47,6 +57,8 @@ class ToDoListStatic {
         img: "assets/images/bear.png",
         id: Uuid().v4().hashCode,
         createAt: DateTime.now(),
+        details:
+            "Read at least 20 pages of a self-development book and write down key takeaways.",
       ),
     ];
   }

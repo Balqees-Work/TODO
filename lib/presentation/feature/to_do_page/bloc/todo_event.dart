@@ -13,11 +13,16 @@ class LoadTodoStarted extends TodoEvent {}
 class AddTodoEvent extends TodoEvent {
   final String title;
   final String description;
+  final String details;
 
-  const AddTodoEvent({required this.title, required this.description});
+  const AddTodoEvent({
+    required this.title,
+    required this.description,
+    required this.details,
+  });
 
   @override
-  List<Object?> get props => [title, description];
+  List<Object?> get props => [title, description, details];
 }
 
 class UpdateTodoEvent extends TodoEvent {

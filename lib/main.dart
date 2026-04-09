@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_bal/config/routes.dart';
-import 'package:todo_bal/presentation/bloc/todo_bloc.dart';
-import 'package:todo_bal/presentation/page/page_todo.dart';
 
 import 'config/config_injection.dart';
 
